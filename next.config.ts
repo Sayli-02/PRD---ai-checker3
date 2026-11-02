@@ -6,9 +6,10 @@ const nextConfig: NextConfig = {
   partialPrefetching: true,
   basePath: BASE_PATH || undefined,
   async redirects() {
-    return BASE_PATH
-      ? [{ source: "/", destination: BASE_PATH, permanent: false, basePath: false }]
-      : [];
+    if (BASE_PATH) {
+      return [{ source: "/", destination: BASE_PATH, permanent: false, basePath: false }];
+    }
+    return [{ source: "/", destination: "/v3", permanent: false }];
   },
   turbopack: {
     rules: {
