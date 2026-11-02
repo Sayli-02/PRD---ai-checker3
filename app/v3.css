@@ -1,0 +1,361 @@
+/* V3 world: night desk, linen paper, terracotta lamp. Scoped so V2 never leaks in. */
+
+[data-v3] {
+  font-family: var(--font-v3), ui-sans-serif, system-ui, sans-serif;
+  background-color: var(--v3-paper);
+  color: var(--v3-ink);
+  min-height: 100dvh;
+}
+
+[data-v3] h1,
+[data-v3] h2 {
+  font-family: var(--font-v3-display), ui-serif, Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  color: inherit;
+  text-wrap: balance;
+}
+
+[data-v3] h3 {
+  font-family: inherit;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: inherit;
+  text-wrap: balance;
+}
+
+[data-v3] p {
+  text-wrap: pretty;
+}
+
+[data-v3] ::selection {
+  background: var(--v3-accent);
+  color: var(--v3-paper);
+}
+
+[data-v3] :focus-visible {
+  outline: 2px solid var(--v3-accent);
+  outline-offset: 3px;
+}
+
+[data-v3] a {
+  text-underline-offset: 0.22em;
+}
+
+.v3-night {
+  background: var(--v3-night);
+  color: var(--v3-on-night);
+}
+
+.v3-bloom {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+}
+
+.v3-bloom > * {
+  position: relative;
+  z-index: 1;
+}
+
+.v3-bloom::before,
+.v3-bloom::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.v3-wash-soft {
+  background: linear-gradient(
+    165deg,
+    var(--v3-surface) 0%,
+    color-mix(in srgb, var(--v3-accent-soft) 72%, var(--v3-paper)) 100%
+  );
+}
+
+.v3-wash-night {
+  background: linear-gradient(
+    180deg,
+    var(--v3-night) 0%,
+    color-mix(in srgb, var(--v3-accent) 22%, var(--v3-night)) 100%
+  );
+}
+
+.v3-bloom-accent::before {
+  top: -18%;
+  right: -12%;
+  width: min(34rem, 78vw);
+  height: min(34rem, 78vw);
+  background: radial-gradient(circle, color-mix(in srgb, var(--v3-accent) 34%, transparent), transparent 68%);
+}
+
+.v3-bloom-accent::after {
+  bottom: -22%;
+  left: -10%;
+  width: min(24rem, 60vw);
+  height: min(24rem, 60vw);
+  background: radial-gradient(circle, color-mix(in srgb, var(--v3-accent-soft) 88%, transparent), transparent 70%);
+}
+
+.v3-bloom-soft::before {
+  top: 8%;
+  left: -14%;
+  width: min(30rem, 72vw);
+  height: min(30rem, 72vw);
+  background: radial-gradient(circle, color-mix(in srgb, var(--v3-accent-soft) 90%, var(--v3-accent) 10%), transparent 70%);
+}
+
+.v3-bloom-soft::after {
+  right: -8%;
+  bottom: -16%;
+  width: min(20rem, 52vw);
+  height: min(20rem, 52vw);
+  background: radial-gradient(circle, color-mix(in srgb, var(--v3-accent) 24%, transparent), transparent 68%);
+}
+
+.v3-bloom-ink::before {
+  top: -12%;
+  left: 42%;
+  width: min(28rem, 68vw);
+  height: min(28rem, 68vw);
+  background: radial-gradient(circle, color-mix(in srgb, var(--v3-accent-ink) 18%, transparent), transparent 68%);
+}
+
+.v3-bloom-ink::after {
+  right: -14%;
+  bottom: -18%;
+  width: min(26rem, 62vw);
+  height: min(26rem, 62vw);
+  background: radial-gradient(circle, color-mix(in srgb, var(--v3-accent-soft) 85%, transparent), transparent 70%);
+}
+
+.v3-bloom-lamp::before {
+  top: 12%;
+  right: -10%;
+  width: min(32rem, 70vw);
+  height: min(32rem, 70vw);
+  background: radial-gradient(circle, color-mix(in srgb, var(--v3-accent) 42%, transparent), transparent 68%);
+}
+
+.v3-bloom-lamp::after {
+  left: 6%;
+  bottom: -28%;
+  width: min(22rem, 55vw);
+  height: min(22rem, 55vw);
+  background: radial-gradient(circle, color-mix(in srgb, var(--v3-on-night) 10%, transparent), transparent 70%);
+}
+
+.v3-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  align-items: start;
+  min-height: min(100dvh, 58rem);
+}
+
+.v3-hero-photo {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  width: 62%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 8% 62%;
+  filter: contrast(1.08) saturate(1.12) brightness(0.95);
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 58%, transparent 100%);
+  mask-image: linear-gradient(90deg, #000 0%, #000 58%, transparent 100%);
+}
+
+.v3-hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgb(26 21 18 / 0.5) 0%, rgb(26 21 18 / 0.22) 38%, rgb(26 21 18 / 0.72) 56%, var(--v3-night) 72%),
+    radial-gradient(ellipse 42% 52% at 88% 18%, color-mix(in srgb, var(--v3-accent) 38%, transparent), transparent 70%),
+    linear-gradient(180deg, rgb(26 21 18 / 0.12) 0%, transparent 42%, rgb(26 21 18 / 0.4) 100%);
+}
+
+.v3-hero h1 {
+  text-shadow: 0 2px 28px rgb(26 21 18 / 0.65);
+}
+
+@media (max-width: 767px) {
+  .v3-hero {
+    min-height: auto;
+  }
+
+  .v3-hero-photo {
+    width: 100%;
+    object-position: 10% 70%;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, transparent 22%, #000 58%, #000 100%);
+    mask-image: linear-gradient(180deg, transparent 0%, transparent 22%, #000 58%, #000 100%);
+  }
+
+  .v3-hero-scrim {
+    background:
+      radial-gradient(ellipse 70% 40% at 80% 8%, color-mix(in srgb, var(--v3-accent) 32%, transparent), transparent 62%),
+      linear-gradient(180deg, var(--v3-night) 0%, rgb(26 21 18 / 0.7) 32%, rgb(26 21 18 / 0.35) 55%, var(--v3-night) 100%);
+  }
+}
+
+.v3-cta {
+  display: inline-flex;
+  height: 3rem;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  background: var(--v3-accent);
+  padding: 0 1.35rem;
+  font-weight: 600;
+  color: var(--v3-night);
+  box-shadow: 0 12px 28px -12px rgb(196 92 50 / 0.7);
+}
+
+.v3-cta:hover {
+  background: color-mix(in srgb, var(--v3-accent) 78%, white);
+}
+
+.v3-compare-aeo {
+  background:
+    radial-gradient(ellipse 90% 80% at 100% 0%, color-mix(in srgb, var(--v3-accent) 30%, transparent), transparent 62%),
+    var(--v3-night);
+}
+
+[data-v3] details[name="v3-faq"] {
+  transition: background-color 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-v3] details[name="v3-faq"][open] {
+  background: color-mix(in srgb, var(--v3-accent-soft) 70%, transparent);
+}
+
+[data-v3] details[name="v3-faq"][open] summary h3 {
+  color: var(--v3-accent-ink);
+}
+
+.v3-bloom-soft ol > li > p:first-child {
+  text-shadow: 0 10px 28px color-mix(in srgb, var(--v3-accent) 40%, transparent);
+}
+
+.v3-stage {
+  position: relative;
+  isolation: isolate;
+}
+
+.v3-stage::before {
+  content: "";
+  position: absolute;
+  right: -12%;
+  top: 8%;
+  z-index: 0;
+  width: 70%;
+  height: 85%;
+  background: radial-gradient(ellipse at 70% 28%, rgb(196 92 50 / 0.42), transparent 72%);
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+.v3-bezel {
+  position: relative;
+  z-index: 1;
+  border-radius: 18px;
+  background: var(--v3-bezel);
+  padding: 10px;
+  box-shadow:
+    0 4px 8px rgb(0 0 0 / 0.25),
+    0 28px 64px -20px rgb(0 0 0 / 0.7);
+}
+
+.v3-screen {
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--v3-surface);
+  color: var(--v3-ink);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.7);
+}
+
+.v3-query {
+  display: block;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .v3-query {
+    clip-path: inset(0 100% 0 0);
+    animation: v3-type 1.6s steps(32) 0.35s forwards;
+  }
+
+  .v3-row,
+  .v3-miss {
+    opacity: 0;
+    animation: v3-in 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+}
+
+@keyframes v3-type {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes v3-in {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}
+
+[data-v3] form[data-tone="cream"] {
+  background: var(--v3-surface);
+  color: var(--v3-ink);
+  border: 1px solid rgb(26 21 18 / 0.08);
+  border-radius: 16px;
+  box-shadow:
+    0 2px 4px rgb(26 21 18 / 0.06),
+    0 24px 48px -24px rgb(0 0 0 / 0.45);
+}
+
+[data-v3] form[data-tone="cream"] h2 {
+  font-family: var(--font-v3-display), ui-serif, Georgia, serif;
+  font-weight: 500;
+}
+
+[data-v3] form[data-tone="cream"] .text-tone-muted {
+  color: var(--v3-muted);
+}
+
+[data-v3] form[data-tone="cream"] input,
+[data-v3] form[data-tone="cream"] select {
+  background: var(--v3-paper);
+  border-color: var(--v3-line);
+  color: var(--v3-ink);
+  border-radius: 8px;
+}
+
+[data-v3] form[data-tone="cream"] input::placeholder {
+  color: var(--v3-muted);
+}
+
+[data-v3] form[data-tone="cream"] button[type="submit"] {
+  background: var(--v3-accent);
+  color: var(--v3-night);
+  border-radius: 999px;
+  box-shadow: 0 10px 24px -12px rgb(196 92 50 / 0.8);
+}
+
+[data-v3] form[data-tone="cream"] button[type="submit"]:hover {
+  background: color-mix(in srgb, var(--v3-accent) 78%, white);
+}
+
