@@ -2,6 +2,7 @@ import { ArrowDown } from "lucide-react";
 import { v3copy } from "@/content/v3";
 import { withBase } from "@/lib/base-path";
 import { SearchMockup } from "./search-mockup";
+import { V3Trust } from "./sections";
 
 const h = v3copy.hero;
 
@@ -33,6 +34,7 @@ export function V3Hero() {
           <SearchMockup />
         </div>
       </div>
+      <V3Trust />
     </section>
   );
 }

@@ -50,7 +50,7 @@
 .v3-bloom {
   position: relative;
   isolation: isolate;
-  overflow: clip;
+  overflow: hidden;
 }
 
 .v3-bloom > * {
@@ -84,7 +84,7 @@
 }
 
 .v3-bloom-accent::before {
-  top: -18%;
+  top: 28%;
   right: -12%;
   width: min(34rem, 78vw);
   height: min(34rem, 78vw);
@@ -219,6 +219,59 @@
 
 .v3-cta:hover {
   background: color-mix(in srgb, var(--v3-accent) 78%, white);
+}
+
+.v3-shows {
+  background: var(--v3-paper);
+}
+
+.v3-shows-grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 48px;
+}
+
+@media (min-width: 640px) {
+  .v3-shows-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .v3-shows-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.v3-shows-grid li {
+  overflow: visible;
+  border: 1px solid var(--v3-line);
+  border-radius: 16px;
+  background:
+    radial-gradient(ellipse 90% 70% at 100% 0%, color-mix(in srgb, var(--v3-accent-soft) 80%, transparent), transparent 70%),
+    var(--v3-surface);
+  padding: 24px 24px 32px;
+}
+
+.v3-shows-icon {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--v3-accent-soft);
+  color: var(--v3-accent-ink);
+}
+
+.v3-shows-grid h3 {
+  margin-top: 16px;
+}
+
+.v3-shows-grid p {
+  margin-top: 8px;
+  max-width: 28ch;
+  color: var(--v3-muted);
 }
 
 .v3-compare-aeo {

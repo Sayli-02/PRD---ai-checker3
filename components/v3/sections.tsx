@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Lock } from "lucide-react";
 import { CheckForm } from "@/components/check/check-form";
+import { icons } from "@/components/home/icons";
 import { Reveal } from "@/components/home/reveal";
 import { v3copy } from "@/content/v3";
 import { formatDate, getLatestPosts } from "@/lib/blog";
@@ -28,35 +29,37 @@ function Band({
 
 export function V3Trust() {
   return (
-    <section className="v3-night v3-bloom v3-bloom-lamp border-t border-[var(--v3-line-night)]">
-      <Reveal className={rise}>
-        <div className="mx-auto flex w-full max-w-6xl flex-wrap items-baseline gap-x-10 gap-y-3 px-5 py-7 sm:px-8">
-          <p className="text-sm text-[var(--v3-muted-night)]">{v3copy.trust.label}</p>
-          {v3copy.trust.engines.map((engine) => (
-            <p key={engine} className="text-sm font-medium text-[var(--v3-on-night)]">
-              {engine}
-            </p>
-          ))}
-        </div>
-      </Reveal>
-    </section>
+    <div className="relative z-10 border-t border-[var(--v3-line-night)]">
+      <div className="mx-auto flex w-full max-w-6xl flex-wrap items-baseline gap-x-10 gap-y-3 px-5 py-7 sm:px-8">
+        <p className="text-sm text-[var(--v3-muted-night)]">{v3copy.trust.label}</p>
+        {v3copy.trust.engines.map((engine) => (
+          <p key={engine} className="text-sm font-medium text-[var(--v3-on-night)]">
+            {engine}
+          </p>
+        ))}
+      </div>
+    </div>
   );
 }
 
 export function V3Shows() {
   return (
-    <Band className="v3-bloom-accent">
+    <Band className="v3-shows v3-bloom-accent">
       <h2 className="max-w-[12ch] text-4xl sm:text-6xl">{v3copy.shows.eyebrow}</h2>
-      <dl className="mt-14 grid gap-x-16 gap-y-12 sm:grid-cols-2">
-        {v3copy.shows.items.map((item, i) => (
-          <Reveal key={item.title} delay={i * 90} className={rise}>
-            <div>
-              <dt className="font-[family-name:var(--font-v3-display)] text-3xl font-medium">{item.title}</dt>
-              <dd className="mt-3 max-w-[36ch] text-[var(--v3-muted)]">{item.text}</dd>
-            </div>
-          </Reveal>
-        ))}
-      </dl>
+      <ul className="v3-shows-grid">
+        {v3copy.shows.items.map((item) => {
+          const Icon = icons[item.icon];
+          return (
+            <li key={item.title}>
+              <span aria-hidden className="v3-shows-icon">
+                <Icon className="size-5" />
+              </span>
+              <h3 className="text-lg">{item.title}</h3>
+              <p>{item.text}</p>
+            </li>
+          );
+        })}
+      </ul>
     </Band>
   );
 }
